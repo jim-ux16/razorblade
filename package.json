@@ -1,0 +1,20 @@
+{
+  "name": "razorblade",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node-fetch": "^2.6.13",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}

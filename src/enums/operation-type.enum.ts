@@ -1,0 +1,10 @@
+export enum IOperationType51{
+
+    VENTA_INTERNA = "0101",
+    EXPORTACION = "0102",
+    NO_DOMICILIADOS = "0103",
+    VENTA_INTERNA_ANTICIPO = "0104",
+    VENTA_ITINERANTE = "0105",
+    FACTURA_GUIA = "0106",
+
+}
