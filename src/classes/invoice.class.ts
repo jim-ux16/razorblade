@@ -154,11 +154,11 @@ export default class Invoice{
                     <cac:RegistrationAddress>
                         <cbc:ID schemeName="Ubigeos" schemeAgencyName="PE:INEI">${this.company!.direccion.ubigeo}</cbc:ID>
                         <cbc:AddressTypeCode listAgencyName="PE:SUNAT" listName="Establecimientos anexos">${this.company!.direccion.codigo_local}</cbc:AddressTypeCode>
-                        <cbc:CityName><![CDATA[${this.company!.direccion.distrito}]]></cbc:CityName>
-                        <cbc:CountrySubentity><![CDATA[${this.company!.direccion.provincia}]]></cbc:CountrySubentity>
-                        <cbc:District><![CDATA[LAMBAYEQUE]]></cbc:District>
+                        <cbc:CityName><![CDATA[${this.company!.direccion.provincia}]]></cbc:CityName>
+                        <cbc:CountrySubentity><![CDATA[${this.company!.direccion.departamento}]]></cbc:CountrySubentity>
+                        <cbc:District><![CDATA[${this.company!.direccion.distrito}]]></cbc:District>
                         <cac:AddressLine>
-                            <cbc:Line><![CDATA[8 DE OCTUBRE N 123 - LAMBAYEQUE - LAMBAYEQUE - LAMBAYEQUE]]></cbc:Line>
+                            <cbc:Line><![CDATA[${this.company!.direccion.direccion}]]></cbc:Line>
                         </cac:AddressLine>
                         <cac:Country>
                             <cbc:IdentificationCode listID="ISO 3166-1" listAgencyName="United Nations Economic Commission for Europe" listName="Country">PE</cbc:IdentificationCode>
@@ -173,20 +173,20 @@ export default class Invoice{
         <cac:AccountingCustomerParty>
             <cac:Party>
                 <cac:PartyIdentification>
-                    <cbc:ID schemeID="6" schemeName="Documento de Identidad" schemeAgencyName="PE:SUNAT" schemeURI="urn:pe:gob:sunat:cpe:see:gem:catalogos:catalogo06">20605145648</cbc:ID>
+                    <cbc:ID schemeID="${this.client!.tipo_documento}" schemeName="Documento de Identidad" schemeAgencyName="PE:SUNAT" schemeURI="urn:pe:gob:sunat:cpe:see:gem:catalogos:catalogo06">${this.client?.numero_documento}</cbc:ID>
                 </cac:PartyIdentification>
                 <cac:PartyName>
-                    <cbc:Name><![CDATA[AGROINVERSIONES Y SERVICIOS AJINOR S.R.L. - AGROSERVIS AJINOR S.R.L.]]></cbc:Name>
+                    <cbc:Name><![CDATA[${this.client!.razon_social}]]></cbc:Name>
                 </cac:PartyName>
                 <cac:PartyTaxScheme>
-                    <cbc:RegistrationName><![CDATA[AGROINVERSIONES Y SERVICIOS AJINOR S.R.L. - AGROSERVIS AJINOR S.R.L.]]></cbc:RegistrationName>
-                    <cbc:CompanyID schemeID="6" schemeName="SUNAT:Identificador de Documento de Identidad" schemeAgencyName="PE:SUNAT" schemeURI="urn:pe:gob:sunat:cpe:see:gem:catalogos:catalogo06">20605145648</cbc:CompanyID>
+                    <cbc:RegistrationName><![CDATA[${this.client!.razon_social}]]></cbc:RegistrationName>
+                    <cbc:CompanyID schemeID="${this.client!.tipo_documento}" schemeName="SUNAT:Identificador de Documento de Identidad" schemeAgencyName="PE:SUNAT" schemeURI="urn:pe:gob:sunat:cpe:see:gem:catalogos:catalogo06">${this.client?.numero_documento}</cbc:CompanyID>
                     <cac:TaxScheme>
-                        <cbc:ID schemeID="6" schemeName="SUNAT:Identificador de Documento de Identidad" schemeAgencyName="PE:SUNAT" schemeURI="urn:pe:gob:sunat:cpe:see:gem:catalogos:catalogo06">20605145648</cbc:ID>
+                        <cbc:ID schemeID="${this.client!.tipo_documento}" schemeName="SUNAT:Identificador de Documento de Identidad" schemeAgencyName="PE:SUNAT" schemeURI="urn:pe:gob:sunat:cpe:see:gem:catalogos:catalogo06">${this.client?.numero_documento}</cbc:ID>
                     </cac:TaxScheme>
                 </cac:PartyTaxScheme>
                 <cac:PartyLegalEntity>
-                    <cbc:RegistrationName><![CDATA[AGROINVERSIONES Y SERVICIOS AJINOR S.R.L. - AGROSERVIS AJINOR S.R.L.]]></cbc:RegistrationName>
+                    <cbc:RegistrationName><![CDATA[${this.client!.razon_social}]]></cbc:RegistrationName>
                     <cac:RegistrationAddress>
                         <cbc:ID schemeName="Ubigeos" schemeAgencyName="PE:INEI"/>
                         <cbc:CityName><![CDATA[]]></cbc:CityName>
@@ -207,10 +207,10 @@ export default class Invoice{
         <cbc:PaymentMeansID>Contado</cbc:PaymentMeansID>
     </cac:PaymentTerms>  
         <cac:TaxTotal>
-            <cbc:TaxAmount currencyID="PEN">28.22</cbc:TaxAmount>
+            <cbc:TaxAmount currencyID="PEN">${this.totalImpuestos!}</cbc:TaxAmount>
             <cac:TaxSubtotal>
-                <cbc:TaxableAmount currencyID="PEN">156.78</cbc:TaxableAmount>
-                <cbc:TaxAmount currencyID="PEN">28.22</cbc:TaxAmount>
+                <cbc:TaxableAmount currencyID="PEN">${this.mtoOperGravadas}</cbc:TaxableAmount>
+                <cbc:TaxAmount currencyID="PEN">${this.mtoIGV}</cbc:TaxAmount>
                 <cac:TaxCategory>
                     <cbc:ID schemeID="UN/ECE 5305" schemeName="Tax Category Identifier" schemeAgencyName="United Nations Economic Commission for Europe">S</cbc:ID>
                     <cac:TaxScheme>
@@ -222,8 +222,8 @@ export default class Invoice{
             </cac:TaxSubtotal>          
         </cac:TaxTotal>
         <cac:LegalMonetaryTotal>
-            <cbc:LineExtensionAmount currencyID="PEN">156.78</cbc:LineExtensionAmount>
-            <cbc:TaxInclusiveAmount currencyID="PEN">185.00</cbc:TaxInclusiveAmount>
+            <cbc:LineExtensionAmount currencyID="PEN">${this.valorVenta!}</cbc:LineExtensionAmount>
+            <cbc:TaxInclusiveAmount currencyID="PEN">${this.mtoImpVenta}</cbc:TaxInclusiveAmount>
             <cbc:PayableAmount currencyID="PEN">185.00</cbc:PayableAmount>
         </cac:LegalMonetaryTotal>
         <cac:InvoiceLine>
@@ -266,7 +266,7 @@ export default class Invoice{
             </cac:Price>
         </cac:InvoiceLine>
     </Invoice>`
-
+        return '';
     }
 
 }
