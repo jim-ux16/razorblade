@@ -19,7 +19,6 @@ export default class RazorBlade{
         try {
             configSchema.parse(options);
             this.configuration = options;
-            console.log(this.configuration);
         } catch (error) {
             console.error("Error en la configuración de RazorBlade:", error);
         }
