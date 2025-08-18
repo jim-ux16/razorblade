@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev" : "ts-node-esm src/main.ts"
+    "dev": "ts-node-esm src/main.ts",
+    "build": "tsc && node dist/main.js"
   },
   "keywords": [],
   "author": "",
@@ -14,11 +15,24 @@
   "devDependencies": {
     "@types/node": "^24.2.1",
     "@types/node-fetch": "^2.6.13",
+    "@types/unzipper": "^0.10.11",
     "ts-node": "^10.9.2",
+    "tsx": "^4.20.4",
     "typescript": "^5.9.2"
   },
   "dependencies": {
+    "@supernova-team/xml-sunat": "^0.9.6",
+    "@xmldom/xmldom": "^0.8.11",
+    "chalk": "^5.6.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.2",
+    "commander": "^14.0.0",
+    "dotenv": "^17.2.1",
+    "es6-shim": "^0.35.8",
+    "jszip": "^3.10.1",
     "node-fetch": "^2.7.0",
+    "reflect-metadata": "^0.2.2",
+    "unzipper": "^0.12.3",
     "zod": "^4.0.17"
   }
 }

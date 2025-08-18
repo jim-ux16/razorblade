@@ -1,4 +1,6 @@
 
+import type { InvoiceForm } from "../form-data/invoice-form.js";
+import type { InvoiceXML } from "../interfaces/invoice-xml.interface.js";
 import { BoletaVentaInvoice } from "./impl/boleta-venta.js";
 import { FacturaInvoice } from "./impl/factura.js";
 import type { Invoice } from "./invoice.interface.js";
@@ -22,8 +24,8 @@ export class InvoiceFactory {
 
     }
 
-    getXML():string{
-        return this.invoice.buildXML();
+    getXML(data:InvoiceForm):Promise<InvoiceXML>{
+        return this.invoice.buildXML(data);
     }
 
 

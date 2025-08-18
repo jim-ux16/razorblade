@@ -1,7 +1,7 @@
 export interface IRazorConfig{
 
     /**
-     * The environment mode for RazorBlade.
+     * The environment mode for Razorblade.
      */
     mode?: 'development' | 'production';
     /**

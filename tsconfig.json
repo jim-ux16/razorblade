@@ -26,7 +26,8 @@
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
-
+    "strictPropertyInitialization": false,
+    "experimentalDecorators": true,
     // Style Options
     // "noImplicitReturns": true,
     // "noImplicitOverride": true,
